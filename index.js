@@ -63,7 +63,7 @@
         return this.prevObject;
     }
     jQuery.prototype.init.prototype = jQuery.prototype;
-    window.$ = window.jQuery = jQuery;
+    // window.$ = window.jQuery = jQuery;
 })();
 // $('.demo').css({width:'100px',height: '100px', backgroundColor: 'red'})
 // $('.demo').get(0);
@@ -75,3 +75,21 @@
 // $('.wrapper ul').find('li').is('.demo')
 // $('.wrapper').add('.demo').css({width:'100px', height: '100px',backgoroundColor: 'red'});
 // $('.wrapper').find('ul').css().end();
+// $('.demo').eq(0).addClass('active');
+// $('.demo').removeClass(function(index, ele) {
+//     if (index % 2 ==0) {
+//         return 'demo'
+//     }
+//     return ''
+// })
+var shopArr = [
+    {name: 'a', age: 18, class: 1}, 
+    {name: 'b', age: 19, class: 2},
+    {name: 'c', age: 20, class: 3}
+];
+var oTb = $('.stb')
+shopArr.forEach(function(ele, index) {
+    var cloneDom = $('.tpl').clone().removeClass('tpl');
+    cloneDom.find('td').eq(0).text(ele.name).next().text(ele.age).next().text(ele.class)
+    cloneDom.appendTo($('.stb'))
+})
