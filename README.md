@@ -122,10 +122,38 @@ $('.wrapper').end()   //结束当前链条中的最近的筛选操作，并将�
 
 ## 事件
 
-.on()
+.on()   向元素添加事件处理程序
 
-.one()
+.one()  向被选元素添加一个或多个事件处理程序。该处理程序只能被每个元素触发一次
 
-.off()
+.off() 移除通过 on() 方法添加的事件处理程序
 
-.trigger()
+.trigger()  触发被选元素的指定事件类型
+
+.hover() 当鼠标指针悬停在被选元素上时要运行的两个函数。该方法触发 mouseenter 和 mouseleave 事件
+
+兼容的事件对象：
+
+    e.pageX、e.clienX、e.which、e.button
+
+    e.preventDefault()
+
+    e.stopPropagation()
+
+    return false
+
+## 实例方法-动画
+
+.hide()、.show()、.toggle() 参数：null 或 （duration, easing, callblack）
+
+.fadeIn、.fadeout 、.fadeToggle、.fadeTo()  参数：null或 （duration, [opacity], easing, callblack）
+
+.slideDown()、.slideUp()、.slideToggle()    参数：null或 （duration, [opacity], easing, callblack）
+
+.animate()  参数：(target duration easing callback）
+
+.stop() .finish()   参数：true false
+
+.delay()
+
+jQuery.fx.off = true 运动的开关 

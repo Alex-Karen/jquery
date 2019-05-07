@@ -62,6 +62,30 @@
     jQuery.prototype.end = function() {
         return this.prevObject;
     }
+    jQuery.prototype.myOn = function(type, handler) {
+        for(var i = 0; i < this.length; i++) {
+            if (!this.cacheEvent) {
+                this[i].cacheEvent = {};
+            }
+            if (!this[i].cacheEvent) {
+                this[i].cacheEvent[type] = [handle];
+            } else {
+                this[i].cacheEvent[type].push(handler);
+            }
+        }
+    }
+    jQuery.prototype.myTrigger = function(type) {
+        var params = arguments.length > 1 ? [].slice.call(arguments, 1) : [];
+        var self = this;
+        for(var i = 0; i < this.length; i++) {
+            if (this[i].cacheEvent[type]) {
+                this[i].cacheEvent[type].forEach(function(ele, index) {
+                    ele.apply(self, params)
+                })
+            }
+        }
+    }
+
     jQuery.prototype.init.prototype = jQuery.prototype;
     // window.$ = window.jQuery = jQuery;
 })();
@@ -75,6 +99,7 @@
 // $('.wrapper ul').find('li').is('.demo')
 // $('.wrapper').add('.demo').css({width:'100px', height: '100px',backgoroundColor: 'red'});
 // $('.wrapper').find('ul').css().end();
+
 // $('.demo').eq(0).addClass('active');
 // $('.demo').removeClass(function(index, ele) {
 //     if (index % 2 ==0) {
@@ -82,14 +107,34 @@
 //     }
 //     return ''
 // })
-var shopArr = [
-    {name: 'a', age: 18, class: 1}, 
-    {name: 'b', age: 19, class: 2},
-    {name: 'c', age: 20, class: 3}
-];
-var oTb = $('.stb')
-shopArr.forEach(function(ele, index) {
-    var cloneDom = $('.tpl').clone().removeClass('tpl');
-    cloneDom.find('td').eq(0).text(ele.name).next().text(ele.age).next().text(ele.class)
-    cloneDom.appendTo($('.stb'))
-})
+
+// var shopArr = [
+//     {name: 'a', age: 18, class: 1}, 
+//     {name: 'b', age: 19, class: 2},
+//     {name: 'c', age: 20, class: 3}
+// ];
+// var oTb = $('.stb')
+// shopArr.forEach(function(ele, index) {
+//     var cloneDom = $('.tpl').clone().removeClass('tpl');
+//     cloneDom.find('td').eq(0).text(ele.name).next().text(ele.age).next().text(ele.class)
+//     cloneDom.appendTo($('.stb'))
+// })
+// $('.demo').on('click','', {name: 'aaa'}, function(e) {
+//     console.log(e.data.name)
+// })
+
+// $('.demo').on('fullPage', function() {
+//     console.log(1)
+// })
+// $('.demo').trigger('fullPage')
+// $('.demo').on('mouseenter', function() {
+//     console.log(1)
+// }).on('mouseleave', function() {
+//     console.log(2)
+// })
+
+// $('.demo').hover(function() {
+//     console.log('enter')
+// }, function() {
+//     console.log('leave')
+// })
