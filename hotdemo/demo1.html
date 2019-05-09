@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>热点排名</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .tpl {
+            display: none;
+        }
+        .clearF::after {
+            content: '';
+            display: block;
+            clear: both;
+            overflow: hidden;
+        }
+        .wrapper {
+            border: 1px solid #ccc;
+            padding: 10px 5px;
+            width: 350px;
+            margin: 100px auto 0;
+        }
+        .warpper .headSection {
+            margin-bottom: 10px;
+        }
+        .wrapper .headSection .hot {
+            font-size: 18px;
+            font-weight: bold;
+            float: left;
+        }
+        .wrapper .headSection .change {
+            float: right;
+            color: #08f;
+            cursor: pointer;
+        }
+        .wrapper .showSection .number{
+            color: #fff;
+            background-color: #0bf;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            display: inline-block;
+        }
+        .wrapper .showSection li {
+            padding: 5px 0;
+            border-bottom: 1px solid #ccc;
+        }
+        .wrapper .showSection .msg {
+            float: right;
+        }
+        .wrapper .showSection .msg.up::after {
+            content: '';
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            background-size: 100% 100%;
+        }
+        .wrapper .showSection .msg.up::after {
+            background-image: url();
+            background-position-y: 4px;
+        }
+        .wrapper .showSection .msg.down::after {
+            
+            background-image: url();
+            background-position-y: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="headSection clearF">
+            <span class="hot">搜索热点</span>
+            <span class="change">换一换</span>
+        </div>
+        <ul class="showSection">
+            <li class="tpl clearF">
+                <span class="number">1</span>
+                <span class="title">金星</span>
+                <span class="msg up">3344</span>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
+<script src="../jquery.js"></script>
+<script src="./demo.js"></script>

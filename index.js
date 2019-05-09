@@ -85,10 +85,109 @@
             }
         }
     }
+    jQuery.prototype.myQueue = function() {
+        var queueObj = this;
+        var queueName = arguments[0] || 'fx';
+        var addFunc = arguments[1] || null;
+        var len = arguments.length;
+
+        if (len == 1) {
+            return queueObj[0][queueName];
+        }
+
+        queueObj[0][queueName] == undefined ? queueObj[0][queueName] = [addFunc] : queueObj[0][queueName].push(addFunc);
+        return this;
+    }
+    jQuery.prototype.myDequeue = function() {
+        var self = this;
+        var queueName = arguments[0] || 'fx';
+        var queueArr = this.myQueue(queueName);
+
+        var currFunc = queueArr.shift();
+        if (currFunc == undefined) {
+            return ;
+        }
+        var next = function() {
+            self.myDequeue(queueName);
+        }
+        currFunc(next);
+        return this;
+    }
+    jQuery.prototype.myAnimate = function(json, callback) {
+        var len = this.length;
+        var self = this;
+        var baseFunc = function(next) {
+            var times = 0;
+            for (var i = 0; i < len; i++) {
+                startMove(self[i], json, function() {
+                    times++;
+                    if (times == len) {
+                        callback && callback();
+                        next();
+                    }
+                });
+            }
+        }
+
+        this.myQueue('fx', baseFunc);
+        if (this.myQueue('fx').length == 1) {
+            this.myDequeue('fx');
+        }
+
+        function getStyle (dom, attr) {
+            if (window.getComputedStyle) {
+                return window.getComputedStyle(dom, null)[attr];
+            }else {
+                return dom.currentStyle[attr];
+            }
+        }
+
+        function startMove (dom, attrObj, callback) {
+            clearInterval(dom.timer);
+            var iSpeed = null, iCur = null;
+            dom.timer = setInterval(function () {
+                var bStop = true;
+                for (var attr in attrObj) {
+                    // 'width' 'height' 
+                    if (attr == 'opacity') {
+                        iCur = parseFloat( getStyle(dom, attr) ) * 100;
+                    }else {
+                        iCur = parseInt( getStyle(dom, attr) );
+                    }
+                    iSpeed = (attrObj[attr] - iCur) / 7;
+                    iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+                    if (attr == 'opacity') {
+                       dom.style.opacity = (iCur + iSpeed) / 100; 
+                    }else {
+                       dom.style[attr] = iCur + iSpeed + 'px';
+                    }
+                    if (iCur != attrObj[attr]) {
+                        bStop = false;
+                    }
+                }
+                if (bStop) {
+                    clearInterval(dom.timer);
+                    typeof callback == 'function' && callback();
+                }
+            }, 30);
+        }
+        return this;
+    }
+    jQuery.prototype.myDelay = function(duration) {
+        var queueArr = this[0]['fx'];
+        queueArr.push(function(next) {
+            setTimeout(function() {
+                next();
+            }, duration);
+        });
+        return this;
+    }
 
     jQuery.prototype.init.prototype = jQuery.prototype;
     // window.$ = window.jQuery = jQuery;
 })();
+
+
 // $('.demo').css({width:'100px',height: '100px', backgroundColor: 'red'})
 // $('.demo').get(0);
 // $('.demo').eq(0);

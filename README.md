@@ -144,16 +144,78 @@ $('.wrapper').end()   //结束当前链条中的最近的筛选操作，并将�
 
 ## 实例方法-动画
 
-.hide()、.show()、.toggle() 参数：null 或 （duration, easing, callblack）
+.hide()、.show()、.toggle() 显示隐藏 参数：null 或 （duration, easing, callblack）
 
-.fadeIn、.fadeout 、.fadeToggle、.fadeTo()  参数：null或 （duration, [opacity], easing, callblack）
+.fadeIn、.fadeout 、.fadeToggle、.fadeTo() 淡入淡出  参数：null或 （duration, easing, callblack）
 
-.slideDown()、.slideUp()、.slideToggle()    参数：null或 （duration, [opacity], easing, callblack）
+.slideDown()、.slideUp()、.slideToggle()  卷入卷出  参数：null或 （duration, easing, callblack）
 
 .animate()  参数：(target duration easing callback）
 
 .stop() .finish()   参数：true false
 
-.delay()
+.delay() 延迟
 
-jQuery.fx.off = true 运动的开关
+jQuery.fx.off = true 运动动画效果开关
+
+## 队列 queue dequeue clearQueue
+
+## jQuery实例方法-位置图形
+
+.offset()   返回第一个匹配元素相对于文档的位置 - 永远参照文档定位
+
+.position() 返回第一个匹配元素相对于父元素的位置 - 参照父级定位 和css定位规则相同
+
+.scrollTop()    设置或返回匹配元素相对滚动条顶部的偏移
+
+.scrollLeft()   设置或返回匹配元素相对滚动条左侧的偏移
+
+.width()    设置或返回匹配元素的宽度
+
+.height()   设置或返回匹配元素的高度
+
+.innerWidth()   返回元素的宽度（包括内边距）
+
+.outerWidth()   返回元素的宽度（包括内边距和边框）
+
+.innerHeight()  返回元素的高度（包括内边距）
+
+.outerWidth()   返回元素的高度（包括内边距和边框）
+
+## Query实例方法-遍历索引
+
+.each()，补充.children()
+
+.index()
+
+## jQuery工具方法
+
+$.type() 判断数据类型 $.isArray()  $.isFunction()  $.isWindow…
+
+$.trim() 消除空格
+
+$.proxy() 改变this指向
+
+$.noConflict()  防止冲突
+
+$.each() 循环 map...
+
+$.parseJSON() 严格json字符串转换成对象 – 原生JSON.parse();
+
+$.makeArray() 类数组转换成数组
+
+$.extend() 插件扩展-工具方法
+
+$.fn.extend() 插件扩展-实例方法
+
+## jQuery工具方法-高级方法
+
+$.ajax() - 基本使用
+
+    前提：看一下，《你不知道的js》课程中的UI多线程-深入剖析js执行机制
+
+$.Callbacks() 回调
+
+$.Deferred() 异步
+
+$.when()
