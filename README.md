@@ -180,25 +180,25 @@ jQuery.fx.off = true 运动动画效果开关
 
 .innerHeight()  返回元素的高度（包括内边距）
 
-.outerWidth()   返回元素的高度（包括内边距和边框）
+.outerHeight(true)   返回元素的高度（包括内边距和边框）
 
 ## Query实例方法-遍历索引
 
 .each()，补充.children()
 
-.index()
+.index()    指定元素相对于其他指定元素的 index 位置
 
 ## jQuery工具方法
 
-$.type() 判断数据类型 $.isArray()  $.isFunction()  $.isWindow…
+$.type() 判断数据类型 $.isArray()  $.isFunction()  $.isWindow...
 
-$.trim() 消除空格
+$.trim() 消除空格  - 原生 bind
 
 $.proxy() 改变this指向
 
-$.noConflict()  防止冲突
+$.noConflict()  防止冲突 - 变量命名冲突$    $c = $.noConflict();
 
-$.each() 循环 map...
+$.each() 循环 $.map()
 
 $.parseJSON() 严格json字符串转换成对象 – 原生JSON.parse();
 

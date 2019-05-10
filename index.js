@@ -186,8 +186,6 @@
     jQuery.prototype.init.prototype = jQuery.prototype;
     // window.$ = window.jQuery = jQuery;
 })();
-
-
 // $('.demo').css({width:'100px',height: '100px', backgroundColor: 'red'})
 // $('.demo').get(0);
 // $('.demo').eq(0);
@@ -237,3 +235,49 @@
 // }, function() {
 //     console.log('leave')
 // })
+
+// $('li').each(function(index, ele) {
+//     $(ele).text(index).addClass('tpl');
+// })
+
+// $('p').children().each(function(index, ele) {
+//     console.log(ele)
+// })
+
+// $('ul').on('click', function(e) {
+//     console.log($(e.target).index());
+// })
+//undefined string number boolean array object function  typeof return value
+// $.type(undefined)
+// $.type([])
+// $.type(function() {})
+
+// var list = {
+//     init: function() {
+//         this.ms = 123;
+//         this.dom = document.getElementById('demo');
+//         this.bindEvent();
+//     },
+//     bindEvent: function() {
+//         this.dom.onclick = $.proxy(this.show, this);
+//     },
+//     show: function() {
+//         console.log(this.produseMs(this.ms));
+//     },
+//     produseMs: function(ms) {
+//         return ms + 234;
+//     }
+// }
+// list.init();
+
+// var arr = [1, 2, 3, 4]
+// $.each(arr, function(index, ele) {
+//     console.log(index + '---' + ele);
+// });
+// var arr1 = $.map(arr, function(index, ele) {
+//     return ele * index
+// })
+
+// $.parseJson();  //JSON.parse(); 
+
+$.makeArray('d', arr) //1传一个类数组，转成数组 2两个参数，第一个参数push到第二个数组中
