@@ -182,6 +182,64 @@
         });
         return this;
     }
+    jQuery.myCallbacks = function() {
+        var options = arguments[0] || '';
+        var list = [];
+        var fired = false;
+        var fireIndex = 0;
+        var fires = function() {
+            for(; fireIndex < list.length; fireIndex++) {
+                list[fireIndex].apply(window, args);
+            }
+            if (options.indexOf('once') != -1) {
+                list = [];
+                fireIndex = 0;
+            }
+        }
+        return {
+            add: function(func) {
+                list.push(func)
+                if (options.indexOf('memery') != -1 && fired) {
+                    fire();
+                }
+                return this;
+            },
+            fire: function() {
+                fireIndex = 0;
+                args = arguments;
+                fired = true;
+                fier();
+            }
+        }
+    }
+    jQuery.myDeferred = function() {
+        var arr = [
+            [jQuery.myCallbacks('once memery'), 'done', 'resolve'],
+            [jQuery.myCallbacks('once memery'), 'fail', 'reject'],
+            [jQuery.myCallbacks('memery'), 'progress', 'notify'],
+        ]
+        var pendding = true;
+        var deferred = {}
+        for (var i = 0; i < arr.length; i++) {
+            arr[i][1] = (function(index) {
+                return function(func) {
+                    arr[index][0].add(func);
+                }
+            })(i)
+
+            arr[i][2] = (function(index) {
+                return function() {
+                    var args= arguments;
+                    if(pendding) {
+                        arr[index][0].fire.apply(window, args);
+                        arr[index][2] != notify ? pendding = false : '';
+                    }
+                }
+            })(i)
+        }
+
+        return deferred;
+    }
 
     jQuery.prototype.init.prototype = jQuery.prototype;
     // window.$ = window.jQuery = jQuery;
@@ -280,4 +338,132 @@
 
 // $.parseJson();  //JSON.parse(); 
 
-$.makeArray('d', arr) //1传一个类数组，转成数组 2两个参数，第一个参数push到第二个数组中
+// $.makeArray('d', arr) //1传一个类数组，转成数组 2两个参数，第一个参数push到第二个数组中
+
+//随机数
+// $.extend({
+//     definedMandom(start, final) {
+//         var len = final - start;
+//         return Math.random() * len + start
+//     },
+//     abc() {
+//         console.log('abc')
+//     }
+// })
+//拖拽
+// $.fn.extend({
+//     drag() {
+//         var disX,
+//             disY,
+//             self = this;
+//         $(this).on('mousedown', function(e) {
+//             disX = e.pageX - $(this).offset().left;
+//             disY = e.pageY - $(this).offset().top;
+
+//             $(document).on('mousemove', function(e) {
+//                 $(self).css({left: e.pageX - disX, top: e.pageY - disY})
+//             })
+//             $(document).on('mouseup', function(e) {
+//                 $(document).off('mousemove').off('mouseup')
+//             })
+//         })
+//         return this;
+//     }
+// });
+// $('#demo').drag()
+
+// 浅层克隆
+// 第二个对象(及后面的所有对象) 克隆到第一个对象中 覆盖 引用值共同一个
+// var obj1 = {
+//         lastName: 'a',
+//         age: 12
+//     },
+//     obj2 = {
+//         lastName: 'b',
+//         age: 15,
+//         smoke: true
+//     },
+//     obj3 = {
+//         lastName: 'c',
+//         furtune: 100
+//     };
+// $.extend(obj1, obj2)
+
+//深层克隆 引用值独立
+
+// $.extend(true, obj1, obj2);
+
+// $.ajax({
+//     url: 'https://localhost:7443/',
+//     type: 'post',
+//     data: {},
+//     dataType: 'JSON',
+//     async: false,//同步
+//     success: function(data) {
+//         $.each(data, function(index, ele) {
+//             console.log(ele)
+//         })
+//     },
+//     error: function(e) {
+//         console.log(e.status, e.statusText)
+//     },
+//     complete: function() {
+//         //容错处理
+//         console.log('成功或错误后执行')
+//     },
+//     context: $('#demo'),         //改变执行上下文this
+//     timeout: 3000
+// })
+
+// var cb = $.Callbacks(); // once memery
+
+// cb.add();
+
+// cb.fire();
+
+// var df = $.Deferred(); // done成功  fail失败 progress正在进行
+
+// function getSorce() {
+//     var df = $.Deferred();
+//     setInterval(function() {
+//         var sorce = Math.random() * 100;
+//         if (sorce > 60) {
+//             df.resolve('success')
+//         } else if (sorce < 40) {
+//             df.reject('fail');
+//         } else {
+//             df.notify('progress');
+//         }
+//     }, 1500);
+//     return df.promise();
+// }
+// var df = getSorce();
+// df.done(function(msg) {
+//     console.log(msg)
+// })
+// df.fail(function(msg) {
+//     console.log(msg)
+// })
+// df.progress(function(msg) {
+//     console.log(msg)
+// })
+
+// (function() {
+//     $.ajax({
+//         url: '',
+//         type: 'post'
+//     })
+// })().then(function(res) {
+//     return $.ajax({
+//         url: '',
+//         type: 'post'
+//     })
+// }).then(function(res) {
+//     console.log(res)
+// })
+
+$.when(df1, df2, df3).then(function() {
+
+}, function() {
+    
+})

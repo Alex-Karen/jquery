@@ -206,6 +206,8 @@ $.makeArray() 类数组转换成数组
 
 $.extend() 插件扩展-工具方法
 
+    扩展方法、浅层克隆、深层克隆
+
 $.fn.extend() 插件扩展-实例方法
 
 ## jQuery工具方法-高级方法
@@ -218,4 +220,4 @@ $.Callbacks() 回调
 
 $.Deferred() 异步
 
-$.when()
+$.when() 参数可以是一个或多个延迟对象，返回值是promise对象
