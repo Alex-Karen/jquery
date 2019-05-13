@@ -138,3 +138,113 @@ $('#location').areaList({
     // 显示图片  图标
     nowItemImg: './image/local.jpg'
 });
+
+$('#myJd').dropList({
+    dirction: 'y',
+    colNum: 2,
+    menuList: [{
+        title: '',
+        items: [{
+            href: '#',
+            name: '待处理订单',
+        }, {
+            href: '#',
+            name: '消息',
+        }, {
+            href: '#',
+            name: '返修退换货',
+        }, {
+            href: '#',
+            name: '我的问答',
+        }, {
+            href: '#',
+            name: '降价商品',
+        }, {
+            href: '#',
+            name: '我的关注',
+        }],
+    }, {
+        title: '',
+        items: [{
+            href: '#',
+            name: '我的京豆',
+        }, {
+            href: '#',
+            name: '我的优惠券',
+        }, {
+            href: '#',
+            name: '我的白条',
+        },
+        ],
+    }]
+})
+
+$('#nav').dropList({
+    // 下拉列表里面每一块的排布是横向横向（y）, 纵向（x）
+    direction: 'x',
+    // 下拉列表内的内容
+    menuList: [{
+        // 每块的标题
+        title: '特色',
+        // 每块的宽度
+        items: [{
+            name: '企业购',
+            href: '#'
+        }, {
+            name: '商用场景管',
+            href: '#'
+        }, {
+            name: '工业品',
+            href: '#'
+        }, {
+            name: '礼品卡',
+            href: '#'
+        }],
+        // 每块每行的选项列数
+    }, {
+        title: '特色',
+        items: [{
+            name: '企业购',
+            href: '#'
+        }, {
+            name: '商用场景管',
+            href: '#'
+        }, {
+            name: '工业品',
+            href: '#'
+        }, {
+            name: '礼品卡',
+            href: '#'
+        }],
+    }, {
+        title: '特色',
+        items: [{
+            name: '企业购',
+            href: '#'
+        }, {
+            name: '商用场景管',
+            href: '#'
+        }, {
+            name: '工业品',
+            href: '#'
+        }, {
+            name: '礼品卡',
+            href: '#'
+        }],
+    }, {
+        title: '特色',
+        items: [{
+            name: '企业购',
+            href: '#'
+        }, {
+            name: '商用场景管',
+            href: '#'
+        }, {
+            name: '工业品',
+            href: '#'
+        }, {
+            name: '礼品卡',
+            href: '#'
+        }],
+    }]
+})
